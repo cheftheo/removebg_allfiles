@@ -1,14 +1,10 @@
-"""
-Removes greenscreen from an image.
-Usage: python greenscreen_remove.py image.jpg
-"""
-
 from PIL import Image
 import sys
 import os
 from os.path import exists
 
-masini = [
+# add files names without ".jpg"
+files = [
     # "bmwe38", 
     # "m3e46", 
     # "bmwm6", 
@@ -155,9 +151,9 @@ GREEN_RANGE_MIN_HSV = (100, 80, 70)
 GREEN_RANGE_MAX_HSV = (185, 255, 255)
 
 def main():
-    for car in masini:
+    for car in files:
         if exists(car + ".jpg"):
-            print("remove bg la masina " + car)
+            print("remove bg la poza " + car)
             im = Image.open(car + ".jpg")
             im = im.convert('RGBA')
 
@@ -178,7 +174,7 @@ def main():
             # im.save(car + '.png')
             im.crop((700, 300, width - 300, height)).save(name + '.png')
         else: 
-            print("masina " + car + " nu exista")
+            print("poza " + car + " nu exista")
 
 
 if __name__ == '__main__':
